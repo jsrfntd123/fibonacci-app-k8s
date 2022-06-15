@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+  template: 
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          image: stephengrider/multi-worker
+          #NOT PORTS ARE REQUIRE BECAUSE THIS SERVICE IS NOT ACCESIBLE BY OTHER ONE AND FOR THIS REASON IT IS NOT NECESARY CREATE A SERVICE 
+          #FOR THIS DEPLOYMENT
+          env: 
+            - name: REDIS_HOST
+              value: server-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'
+
+
+          
+
+

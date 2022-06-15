@@ -1,0 +1,43 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    # It is a good practice map the version id in git with the version id in docker hub
+    - SHA=$(git rev-parse HEAD)
+    # Disable prompts to confirmation when we will login
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+before_install:
+  #Open the encrypted file and put the uncrypted file: service-account.json
+  - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
+  
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  #You have to install travis to encrypt the service-account.json file through the travis encryption service
+  #docker run -it -v $(pwd):/app ruby:2.4 sh
+ 
+  #INSTALL TRAVIS
+  #gem install travis
+
+  #login to github repository
+  #travis login --github-token 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 --pro
+
+  #Encrypt file and delete the original file: service-account.json
+  #travis encrypt-file service-account.json -r jsrfntd1/fibonaccia-app-k8s --pro
+  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project k8s-project-349216
+  - gcloud config set compute/zone us-central1-a
+  - gcloud container clusters get-credentials multi-cluster
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password
+  - docker build -t jsrfntd/react-test -f ./client/Dockerfile.dev
+
+
+script:
+  - docker run -e CI=true USERNAME/react-test npm test
+
+deploy: 
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: main

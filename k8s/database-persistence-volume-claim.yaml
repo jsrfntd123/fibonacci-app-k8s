@@ -1,0 +1,32 @@
+## VOLUME IS AN OBJECT THAT ALLOWS A CONTAINER TO STORE DATA AT A POD LEVEL. IF THE POD IS DESTROYED THE VOLUME IS DESTROYED AND FOR THIS REASON WE SHOULDNT STORE DATA OF DATABASE IN IT. 
+
+## A VOLUME CLAIM IS A REGISTRY OF THE DIFFERENT PROVISION PERSISTENT VOLUME SPECIFICATIONS.
+
+## DYNAMICALLY PROVISION: PERSISTENT VOLUME IS CREATED AHEAD OF TIME.
+
+## STATICALLY PROVISION: PERSISTENT VOLUME IS CREATED BY REQUEST.
+
+## PERSISTENT VOLUMESD ACCESS MODES:
+## 1. ReadWriteOnce: Can be used by a single node.
+## 2. ReadOnlyMany: Multiple nodes can read from this.
+## 3. ReadWriteMany: Can be read and wirtten to by many nodes.
+
+## VOLUME PROVISIONERS: 
+## GCP: GCP PERSISTENCE DISK
+## AZURE: AZURE FILE OR AZURE DISK
+## AWS: AWS BLOCK STORE
+## NFS
+## REFERENCES: https://kubernetes.io/docs/concepts/storage/storage-classes/
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: database-persistence-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+ #   storageClassName:
+ #   - Set the default option

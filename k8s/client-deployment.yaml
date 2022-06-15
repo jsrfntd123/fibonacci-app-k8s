@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+#The kind of k8s object
+kind: Deployment
+#Cluster identification
+metadata:
+  name: client-deployment
+spec:
+  # The number of pod intances replicas
+  replicas: 3
+  selector:
+    # Match the pod template here with template->metadata->labels->component
+    matchLabels:
+      component: web
+   #The pod template. It is similar to client-pod.yaml. It defines the pod that the deployment has to run.
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: stephengrider/multi-client
+          ports:
+            - containerPort: 3000

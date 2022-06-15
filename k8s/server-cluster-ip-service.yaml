@@ -1,0 +1,12 @@
+apiVersion: v1
+# SERVICE IS A CK8S COMPONENT THAT PROVEDE A SRERVICE NETWORK
+kind: Service
+metadata:
+  name: server-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: server
+  ports:
+    - port: 5000
+      targetPort: 5000

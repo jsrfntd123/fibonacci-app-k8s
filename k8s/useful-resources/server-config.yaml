@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+#The kind of k8s object
+kind: Deployment
+#Cluster identification
+metadata:
+  name: server-deployment
+spec:
+  # The number of pod intances replicas
+  replicas: 3
+  selector:
+    # Match the pod template here with template->metadata->labels->component
+    matchLabels:
+      component: server
+   #The pod template. It defines the pod that the deployment has to run.
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: stephengrider/multi-server
+          ports:
+            - containerPort: 5000
+
+#The three dash indicate the division between the deployment configuration and the service configuration
+---
+apiVersion: v1
+# SERVICE IS A CK8S COMPONENT THAT PROVEDE A SRERVICE NETWORK
+kind: Service
+metadata: 
+  name: server-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: server
+  ports:
+    - port: 5000
+      targetPort: 5000
