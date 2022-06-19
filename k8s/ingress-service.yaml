@@ -1,9 +1,12 @@
+# ROUTING SEVICE MAKE THE ROUTING INTO THE K8S CLUSTERS
 apiVersion: networking.k8s.io/v1
 # UPDATE API
 kind: Ingress
 metadata:
   name: ingress-service
   # ANNOTATIONS: ADITIONAL CONFIGURATIONS IN THE INGRESS OBJECT AT HIGH LEVEL
+  # WHEN YOU DEPLOY THE INGREES SERVICE IN THE CLOUD, YOU HAVE TO INSTALL IT INDEPENDENTLY BECAUSE
+  # THE CLOUD LOAD BALANCER (IN GCP, AWS O AZURE) DOESNT KNOW WHICH IS THE INGRESS CONTAINER
   annotations:
     kubernetes.io/ingress.class: 'nginx'
     nginx.ingress.kubernetes.io/use-regex: 'true'
