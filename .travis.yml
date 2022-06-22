@@ -22,7 +22,7 @@ before_install:
   #gem install travis
 
   #login to github repository
-  #travis login --github-token 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 --pro
+  #travis login --github-token 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 --pro
 
   #Encrypt file and delete the original file: service-account.json
   #travis encrypt-file service-account.json -r jsrfntd123/fibonacci-app-k8s --pro
@@ -34,7 +34,7 @@ before_install:
   #For this you have to ewxecute the following command into GCP console
   #kubectl create generic pgpassword --from-literal PGPASSWORD=mypgpassword123
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t jsrfntd/react-test -f ./client/Dockerfile.dev
+  - docker build -t jsrfntd/react-test -f ./client/Dockerfile.dev ./client
 
 
 script:
