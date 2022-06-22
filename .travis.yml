@@ -10,6 +10,7 @@ env:
 before_install:
   #Open the encrypted file and put the uncrypted file: service-account.json
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
+
   
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
@@ -21,10 +22,10 @@ before_install:
   #gem install travis
 
   #login to github repository
-  #travis login --github-token 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 --pro
+  #travis login --github-token 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 --pro
 
   #Encrypt file and delete the original file: service-account.json
-  #travis encrypt-file service-account.json -r jsrfntd1/fibonaccia-app-k8s --pro
+  #travis encrypt-file service-account.json -r jsrfntd123/fibonacci-app-k8s --pro
   - gcloud auth activate-service-account --key-file service-account.json
   - gcloud config set project k8s-project-349216
   - gcloud config set compute/zone us-central1-a

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: stephengrider/multi-worker
+          image: jsrfntd/multi-worker
           #NOT PORTS ARE REQUIRE BECAUSE THIS SERVICE IS NOT ACCESIBLE BY OTHER ONE AND FOR THIS REASON IT IS NOT NECESARY CREATE A SERVICE 
           #FOR THIS DEPLOYMENT
           env: 
