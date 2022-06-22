@@ -11,7 +11,7 @@ before_install:
   #Open the encrypted file and put the uncrypted file: service-account.json
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
 
-  
+
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
@@ -33,7 +33,7 @@ before_install:
   #You have to create the secret variable called pgpassword into the cluster in GCP.
   #For this you have to ewxecute the following command into GCP console
   #kubectl create generic pgpassword --from-literal PGPASSWORD=mypgpassword123
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t jsrfntd/react-test -f ./client/Dockerfile.dev
 
 
