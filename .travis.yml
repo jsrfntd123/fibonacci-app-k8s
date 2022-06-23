@@ -39,6 +39,7 @@ before_install:
 
 script:
   - docker run -e CI=true jsrfntd/react-test npm test
+  - echo "paso test ---------------------------"
 
 deploy:
   provider: script

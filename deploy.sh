@@ -1,14 +1,14 @@
-docker build -t jsrfntd/multi-client:latest -t jsrfntd/multi-client:$SHA -f ./client/Dockerfile ./client
-docker build -t jsrfntd/multi-server:latest -t jsrfntd/multi-server:$SHA -f ./server/Dockerfile ./server
-docker build -t jsrfntd/multi-worker:latest -t jsrfntd/multi-worker:$SHA  -f ./worker/Dockerfile ./worker
+#docker build -t jsrfntd/multi-client:latest -t jsrfntd/multi-client:$SHA -f ./client/Dockerfile ./client
+#docker build -t jsrfntd/multi-server:latest -t jsrfntd/multi-server:$SHA -f ./server/Dockerfile ./server
+#docker build -t jsrfntd/multi-worker:latest -t jsrfntd/multi-worker:$SHA  -f ./worker/Dockerfile ./worker
 
-docker push jsrfntd/multi-worker:latest
-docker push jsrfntd/multi-server:latest
-docker push jsrfntd/multi-worker:latest
+#docker push jsrfntd/multi-worker:latest
+#docker push jsrfntd/multi-server:latest
+#docker push jsrfntd/multi-worker:latest
 
-docker push jsrfntd/multi-worker:$SHA
-docker push jsrfntd/multi-server:$SHA
-docker push jsrfntd/multi-worker:$SHA
+#docker push jsrfntd/multi-worker:$SHA
+#docker push jsrfntd/multi-server:$SHA
+#docker push jsrfntd/multi-worker:$SHA
 
 kubectl apply -f k8s
 
