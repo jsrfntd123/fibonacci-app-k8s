@@ -12,10 +12,14 @@
 
 kubectl apply -f k8s
 
+echo "paso apply"
+
 #set the image to a specific deployment
 kubectl set image deployments/client-deployment server=jsrfntd/multi-client:$SHA
 kubectl set image deployments/server-deployment server=jsrfntd/multi-server:$SHA
 kubectl set image deployments/worker-deployment server=jsrfntd/multi-worker:$SHA
+
+echo "paso set"
 
 #In GCP console you have to create the secrets: 
 # gcloud auth activate-service-account --key-file service-account.json
