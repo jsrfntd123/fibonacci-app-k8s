@@ -32,7 +32,7 @@ before_install:
   - gcloud container clusters get-credentials multi-cluster
   #You have to create the secret variable called pgpassword into the cluster in GCP.
   #For this you have to ewxecute the following command into GCP console
-  #kubectl create generic pgpassword --from-literal PGPASSWORD=mypgpassword123
+  #kubectl create secret generic pgpassword --from-literal PGPASSWORD=mypgpassword123
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t jsrfntd/react-test -f ./client/Dockerfile.dev ./client
 
